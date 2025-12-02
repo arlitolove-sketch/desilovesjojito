@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para ti, mi Bordito Milibú &lt;3</title>
+
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background-color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+      overflow: auto;
+      color: #333;
+    }
+
+    .screen { display: none; width: 90%; max-width: 420px; }
+    .active { display: block; }
+
+    input {
+      padding: 10px;
+      width: 80%;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background-color: #ff4f81;
+      color: white;
+    }
+
+    button:hover { background-color: #ff2a66; }
+
+    .btn-container {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 25px;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      background-color: white;
+      border-radius: 15px;
+      padding: 20px;
+      width: auto;
+      max-width: 90%;
+
+      /* Centrado de todo el contenido */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .main-img {
+      width: 280px;
+      margin-bottom: 15px;
+    }
+
+    #errorMessage {
+      color: red;
+      font-size: 0.9em;
+    }
+
+    .card p {
+      text-align: center;
+      line-height: 1.6;
+      margin: 10px 0;
+    }
+
+    /* Ajuste de imagen de carta para adaptarse a cualquier pantalla */
+    .card img {
+      width: 100%;
+      max-width: 380px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Pantalla de contraseña -->
+  <div class="screen active" id="passwordScreen">
+    <img src="https://i.pinimg.com/736x/0f/29/cd/0f29cd88dac9d0d685c93ca2c30d7b33.jpg" alt="Caja de regalo" class="main-img">
+    <h2>🔒 Ingresa la contraseña</h2>
+    <input type="password" id="passwordInput" placeholder="Escribe la clave...">
+    <button onclick="checkPassword()">Entrar</button>
+    <p id="errorMessage"></p>
+  </div>
+
+  <!-- Menú -->
+  <div class="screen" id="menuScreen">
+    <h2>💌 Para ti, mi Bordito Milibú 💌</h2>
+    <p>Elige lo que quieres abrir:</p>
+    <div class="btn-container">
+      <button onclick="window.open('https://youtu.be/Hev7qzWr9LY?si=VxwKHAMvcmJlEUdT')">🎶 Ver video</button>
+      <button onclick="showLetter()">💖 Leer carta</button>
+    </div>
+  </div>
+
+  <!-- Carta -->
+  <div class="screen" id="letterScreen">
+    <div class="card">
+      <!-- Imagen de carta -->
+      <img src="https://i.ibb.co/RGczFJz8/photo-output.png" alt="Carta">
+
+      <h3>Querido Joji:</h3>
+
+      <p>
+      En Japón hay una tradición muy conocida llamada 相合傘 (ai ai gasa),
+      que significa "Compartir paraguas".
+      </p>
+
+      <p>
+      Las parejas (o personas que se gustan) dibujan un paraguas y a cada lado escriben sus nombres,
+      normalmente con un corazoncito arriba. Y me parece que es un gesto tierno, pero súper significativo,
+      porque simboliza que ambos estamos “bajo el mismo techo”, protegidos, juntos.
+      </p>
+
+      <p>
+      En este día del calendario es para recordarte que nuestros nombres también pueden escribirse juntos...
+      y que quiero seguir trazando ese paraguas contigo, una y otra vez, en cada día que venga.
+      </p>
+
+      <p>
+      Aishiteru!~ ♡
+      </p>
+
+      <button onclick="goBack()">🔙 Volver</button>
+    </div>
+  </div>
+
+  <script>
+    const correctPassword = "we could leave the christmas lights up til january";
+
+    function checkPassword() {
+      const input = document.getElementById("passwordInput").value.trim();
+      const error = document.getElementById("errorMessage");
+
+      if (input === correctPassword) {
+        document.getElementById("passwordScreen").classList.remove("active");
+        document.getElementById("menuScreen").classList.add("active");
+        error.textContent = "";
+      } else {
+        error.textContent = "Contraseña incorrecta 💔";
+      }
+    }
+
+    function showLetter() {
+      document.getElementById("menuScreen").classList.remove("active");
+      document.getElementById("letterScreen").classList.add("active");
+    }
+
+    function goBack() {
+      document.getElementById("letterScreen").classList.remove("active");
+      document.getElementById("menuScreen").classList.add("active");
+    }
+  </script>
+
+</body>
+</html>
